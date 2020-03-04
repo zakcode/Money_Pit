@@ -33,6 +33,7 @@ alpha_vantage_api_key.txt
 
 # OS generated files #
 ######################
+.ipynb_checkpoints
 .DS_Store
 .DS_Store?
 ._*
