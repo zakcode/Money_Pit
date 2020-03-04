@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 # read in API key
 try:
-    f = open('alpha_vantage_api_key.txt', 'r')
+    f = open('../alpha_vantage_api_key.txt', 'r')
     key = f.read()
 except:
     print('Create a file in the project root called alpha_vantage_api_key.txt with your API key')
