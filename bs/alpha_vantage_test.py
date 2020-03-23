@@ -11,24 +11,27 @@ import matplotlib.pyplot as plt
 
 # read in API key
 try:
-    f = open('../alpha_vantage_api_key.txt', 'r')
-    key = f.read()
+    key = open('../alpha_vantage_api_key.txt', 'r').read()
 except:
-    print('Create a file in the project root called alpha_vantage_api_key.txt with your API key')
+    print('Error: Create a file in the project root called alpha_vantage_api_key.txt with your API key')
+    key = None
+
 # Chose your output format, or default to JSON (python dict)
-ts = TimeSeries(key, output_format='pandas')
-ti = TechIndicators(key)
-
-# Get the data, returns a tuple
-# aapl_data is a pandas dataframe, aapl_meta_data is a dict
-aapl_data, aapl_meta_data = ts.get_daily(symbol='AAPL')
-# aapl_sma is a dict, aapl_meta_sma also a dict
-aapl_sma, aapl_meta_sma = ti.get_sma(symbol='AAPL')
-
-
-# Visualization
-figure(num=None, figsize=(15, 6), dpi=80, facecolor='w', edgecolor='k')
-aapl_data['4. close'].plot()
-plt.tight_layout()
-plt.grid()
-plt.show()
+if key:
+    ts = TimeSeries(key, output_format='pandas')
+    ti = TechIndicators(key)
+    
+    # Get the data, returns a tuple
+    # aapl_data is a pandas dataframe, aapl_meta_data is a dict
+    aapl_data, aapl_meta_data = ts.get_daily(symbol='AAPL')
+    # aapl_sma is a dict, aapl_meta_sma also a dict
+    aapl_sma, aapl_meta_sma = ti.get_sma(symbol='AAPL')
+    
+    
+    # Visualization
+    figure(num=None, figsize=(15, 6), dpi=80, facecolor='w', edgecolor='k')
+    aapl_data['4. close'].plot()
+    plt.tight_layout()
+    plt.grid()
+    plt.show()
+    
